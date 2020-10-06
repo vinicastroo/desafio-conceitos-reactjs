@@ -1,28 +1,40 @@
-import React from "react";
+import React, {useState} from "react";
 
 import "./styles.css";
 
 function App() {
+  const [repositories, setRepositories] = useState(['Desafio ReactJS']);
+
   async function handleAddRepository() {
-    // TODO
+    const input = document.querySelector('#input_title');
+
+    repositories.push(input.value ? input.value : 'Sem Texto');
+
+    setRepositories([...repositories]);
   }
 
   async function handleRemoveRepository(id) {
-    // TODO
+    repositories.splice(id, 1);
+    setRepositories([...repositories]);
   }
 
   return (
     <div>
       <ul data-testid="repository-list">
-        <li>
-          Repositório 1
+        {
+          repositories.map((repository, index) => (
 
-          <button onClick={() => handleRemoveRepository(1)}>
-            Remover
-          </button>
-        </li>
+          <li key={index}>
+            {repository}
+            <button onClick={() => handleRemoveRepository(index)}>
+              Remover
+            </button>
+          </li>
+          ))
+        }
       </ul>
 
+      <input type="text" id="input_title"/>
       <button onClick={handleAddRepository}>Adicionar</button>
     </div>
   );
