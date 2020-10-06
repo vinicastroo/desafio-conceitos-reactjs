@@ -16,6 +16,11 @@ div {
   padding: 8px;
 }
 
+div h1{
+  padding: 8px 0;
+  margin-bottom: 16px;
+}
+
 div li {
   display: flex;
   align-items: center;
